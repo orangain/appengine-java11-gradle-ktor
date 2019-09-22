@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -42,7 +41,7 @@ tasks.assemble {
     dependsOn(tasks.shadowJar) // assembleの依存タスクとしてshadowJarを実行する。
 }
 
-tasks.withType<ShadowJar> {
+tasks.shadowJar {
     archiveClassifier.set("") // fat jarを単独のjarと同じ名前にして上書きする。
 }
 
