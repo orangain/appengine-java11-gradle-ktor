@@ -50,4 +50,8 @@ appengine {
     stage {
         setAppEngineDirectory(".") // app.yamlをトップディレクトリに置く
     }
+    deploy { // 追加
+        projectId = "GCLOUD_CONFIG"
+        version = "GCLOUD_CONFIG"
+    }
 }
