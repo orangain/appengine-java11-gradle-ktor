@@ -45,3 +45,9 @@ tasks.assemble {
 tasks.withType<ShadowJar> {
     archiveClassifier.set("") // fat jarを単独のjarと同じ名前にして上書きする。
 }
+
+appengine {
+    stage {
+        setAppEngineDirectory(".") // app.yamlをトップディレクトリに置く
+    }
+}
