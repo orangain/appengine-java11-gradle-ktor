@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -8,6 +9,7 @@ val kotlin_version: String by project
 plugins {
     application
     kotlin("jvm") version "1.3.50"
+    id("com.github.johnrengelman.shadow") version "5.1.0" // 追加
 }
 
 group = "com.example"
@@ -34,3 +36,11 @@ kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
 sourceSets["main"].resources.srcDirs("resources")
 sourceSets["test"].resources.srcDirs("testresources")
+
+tasks.assemble {
+    dependsOn(tasks.shadowJar) // assembleの依存タスクとしてshadowJarを実行する。
+}
+
+tasks.withType<ShadowJar> {
+    archiveClassifier.set("") // fat jarを単独のjarと同じ名前にして上書きする。
+}
